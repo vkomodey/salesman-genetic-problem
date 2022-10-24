@@ -51,13 +51,15 @@ def crossover(mother_gene: np.array, father_gene: np.array) -> np.array:
 def mutate(g: Graph, gene: np.array) -> np.array:
     route = gene[1: -1]
 
-    swap_first_idx = random.randint(1, len(route))
-    swap_second_idx = random.randint(1, len(gene) - 1)
+    swap_first_idx = random.randint(1, len(gene) - 3)
+    swap_second_idx = random.randint(1, len(gene) - 3)
 
     while swap_first_idx == swap_second_idx:
-        swap_second_idx = random.randint(1, len(route))
+        swap_second_idx = random.randint(1, len(gene) - 3)
 
     route[swap_first_idx], route[swap_second_idx] = route[swap_second_idx], route[swap_first_idx]
 
     return g.complete_route(route)
 
+
+print(mutate(g, np.array([0,1,2,3,4,0])))
